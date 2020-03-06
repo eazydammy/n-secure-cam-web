@@ -172,3 +172,11 @@
     float: none !important;
     margin: 0 auto !important;
   }
+
+  .hero-area .block h2 {
+    color: #ffffff;
+  }
+
+  .hero-area .block h2:hover {
+    color:  #01baef !important;
+  }
