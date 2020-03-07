@@ -180,3 +180,23 @@
   .hero-area .block h2:hover {
     color:  #01baef !important;
   }
+
+  .service-list .block {
+    background:  #20bf55;
+    text-align: center;
+  }
+
+  .label{
+    background: red; 
+    display: table;
+    color: #fff;
+  }
+
+  .input[type="submit"] {
+    display: none;
+  }
+
+  .file-up-button {
+    /* height: 100%; */
+    width: 100%;
+  }

@@ -149,7 +149,7 @@ a:focus, a:hover {
 }
 
 #preloader {
-  background: #f0326b;
+  background: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
   height: 100%;
   opacity: 1;
   filter: alpha(opacity=100);
