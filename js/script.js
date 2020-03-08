@@ -327,6 +327,7 @@ function postVideo(link) {
 	}
 	var data = JSON.stringify({"selectedVideo": link.title});
 	xhr.send(data);
+	window.location.href = "result.html";
 }
 
 
