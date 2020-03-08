@@ -14,8 +14,27 @@
 		$('#preloader').fadeOut('slow',function(){$(this).remove();});
 	});
 
-
-
+	/* ========================================================================= */
+	/*	Get the videos for the inference page.
+	/* =========================================================================  */
+	(function() {
+		let urlApi = "https://cors-anywhere.herokuapp.com/https://sgnigeria.herokuapp.com/listVideos";
+		$.getJSON( urlApi, {
+			tags: "mount rainier",
+			tagmode: "any",
+			format: "json"
+		})
+		.done(function( data ) {
+			console.log(data);
+			var id = 1;
+			$.each( data.videos, function( i, item ) {
+				const element = document.getElementById(id);
+				element.innerHTML = item.name;
+				element.title = item.name;
+				id += 1;
+			});
+		});
+	})();	
 
 	/* ========================================================================= */
 	/*	Portfolio Filtering Hook
@@ -292,6 +311,23 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+function postVideo(link) {
+	//alert(link.title);	
+	console.log("I am here");
+	let xhr = new XMLHttpRequest();
+	var url = "https://cors-anywhere.herokuapp.com/https://sgnigeria.herokuapp.com/getVideo";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.onreadystatechange = function () { 
+    	if (xhr.readyState == 4 && xhr.status == 200) {
+        	var json = JSON.parse(xhr.responseText);
+        	console.log(xhr.responseText);
+    	}
+	}
+	var data = JSON.stringify({"selectedVideo": link.title});
+	xhr.send(data);
+}
 
 
 
