@@ -313,21 +313,23 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function postVideo(link) {
-	//alert(link.title);	
 	console.log("I am here");
-	let xhr = new XMLHttpRequest();
-	var url = "https://cors-anywhere.herokuapp.com/https://sgnigeria.herokuapp.com/getVideo";
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json");
-	xhr.onreadystatechange = function () { 
-    	if (xhr.readyState == 4 && xhr.status == 200) {
-        	var json = JSON.parse(xhr.responseText);
-        	console.log(xhr.responseText);
-    	}
-	}
-	var data = JSON.stringify({"selectedVideo": link.title});
-	xhr.send(data);
-	window.location.href = "result.html";
+	var settings = {
+		"url": "https://sgnigeria.herokuapp.com/postVideo",
+		"method": "POST",
+		"timeout": 0,
+		"headers": {
+		  "Content-Type": "application/json"
+		},
+		"data": JSON.stringify({"selectedVideo":link.title}),
+	  };
+	  
+	  $.ajax(settings).done(function (response) {
+		console.log(response);
+	  });
+
+	window.location.replace("result.html");
+	return false;
 }
 
 
